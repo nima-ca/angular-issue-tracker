@@ -9,6 +9,7 @@ import { IssuesService } from '../issues.service';
   styleUrls: ['./issue-report.component.css'],
 })
 export class IssueReportComponent implements OnInit {
+  @Output() formClose = new EventEmitter();
   issueForm: FormGroup | undefined;
 
   constructor(
@@ -27,5 +28,6 @@ export class IssueReportComponent implements OnInit {
 
   addIssue(): void {
     this.issueService.createIssue(this.issueForm?.value);
+    this.formClose.emit();
   }
 }
