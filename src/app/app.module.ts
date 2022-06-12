@@ -8,9 +8,10 @@ import { AppComponent } from './app.component';
 import { IssueListComponent } from './issue-list/issue-list.component';
 import { IssueReportComponent } from './issue-report/issue-report.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
 
 @NgModule({
-  declarations: [AppComponent, IssueListComponent, IssueReportComponent, ConfirmDialogComponent],
+  declarations: [AppComponent, IssueListComponent, IssueReportComponent, ConfirmDialogComponent, EditDialogComponent],
   imports: [
     BrowserModule,
     ClarityModule,

@@ -1,21 +1,22 @@
-<ng-container *ngIf="showReportIssue === false">
+<ng-container *ngIf="showReportIssue === false && !editIssue">
   <button class="btn btn-primary" (click)="showReportIssue = true">
     Add new issue
   </button>
-
   <clr-datagrid>
-    <clr-dg-column [clrDgField]="'issueNo'" [clrDgColType]="'number'">
-      Issue No
-    </clr-dg-column>
+    <clr-dg-column [clrDgField]="'issueNo'" [clrDgColType]="'number'"
+      >Issue No</clr-dg-column
+    >
     <clr-dg-column [clrDgField]="'type'">Type</clr-dg-column>
     <clr-dg-column [clrDgField]="'title'">Title</clr-dg-column>
-    <clr-dg-column [clrDgField]="'description'">Description </clr-dg-column>
-    <clr-dg-column [clrDgField]="'priority'">Priority </clr-dg-column>
+    <clr-dg-column [clrDgField]="'description'">Description</clr-dg-column>
+    <clr-dg-column [clrDgField]="'priority'">Priority</clr-dg-column>
+
     <clr-dg-row *clrDgItems="let issue of issues">
       <clr-dg-action-overflow>
         <button class="action-item" (click)="selectedIssue = issue">
           Resolve
         </button>
+        <button class="action-item" (click)="editIssue = issue">Edit</button>
       </clr-dg-action-overflow>
       <clr-dg-cell>{{ issue.issueNo }}</clr-dg-cell>
       <clr-dg-cell>{{ issue.type }}</clr-dg-cell>
@@ -27,12 +28,13 @@
         }}</span>
       </clr-dg-cell>
     </clr-dg-row>
+
     <clr-dg-footer>{{ issues.length }} issues</clr-dg-footer>
   </clr-datagrid>
 </ng-container>
 
 <app-issue-report
-  *ngIf="showReportIssue === true"
+  *ngIf="showReportIssue == true"
   (formClose)="onCloseReport()"
 ></app-issue-report>
 
@@ -41,3 +43,9 @@
   [issueNo]="selectedIssue.issueNo"
   (confirm)="onConfirm($event)"
 ></app-confirm-dialog>
+
+<app-edit-dialog
+  *ngIf="editIssue"
+  [issue]="editIssue"
+  (formClose)="onCloseEdit()"
+></app-edit-dialog>
