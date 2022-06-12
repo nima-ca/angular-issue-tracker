@@ -19,4 +19,13 @@ export class IssuesService {
     issue.issueNo = Math.floor(Math.random() * 100000000);
     this.issue.push(issue);
   }
+
+  completeIssue(issue: Issue) {
+    const selectedIssue: Issue = {
+      ...issue,
+      completed: new Date(),
+    };
+    const index = this.issue.findIndex((i) => i === issue);
+    this.issue[index] = selectedIssue;
+  }
 }
